@@ -8,22 +8,22 @@ def rotate_point_cloud_x(point_cloud, angle):
                                  [0, np.cos(angle), -np.sin(angle), 0],
                                  [0, np.sin(angle), np.cos(angle), 0],
                                  [0, 0, 0, 1]])
- 
+   
     rotated_point_cloud = np.dot(point_cloud, rotation_matrix.T)
     return rotated_point_cloud
 
 def rotate_point_cloud_y(point_cloud, angle):
-  
+   
     rotation_matrix = np.array([[np.cos(angle), 0, np.sin(angle), 0],
                                  [0, 1, 0, 0],
                                  [-np.sin(angle), 0, np.cos(angle), 0],
                                  [0, 0, 0, 1]])
- 
+   
     rotated_point_cloud = np.dot(point_cloud, rotation_matrix.T)
     return rotated_point_cloud
 
 def rotate_point_cloud_z(point_cloud, angle):
- 
+  
     rotation_matrix = np.array([[np.cos(angle), -np.sin(angle), 0, 0],
                                  [np.sin(angle), np.cos(angle), 0, 0],
                                  [0, 0, 1, 0],
@@ -35,9 +35,9 @@ def rotate_point_cloud_z(point_cloud, angle):
 def load_pcd_file(file_path):
     with open(file_path, 'r') as file:
         lines = file.readlines()
-
+   
     data_start_index = lines.index('DATA ascii\n') + 1
-  
+   
     points = []
     for line in lines[data_start_index:]:
         if line.strip():  
@@ -57,7 +57,7 @@ def save_pcd_file(file_path, points):
         file.write('VIEWPOINT 0 0 0 1 0 0 0\n')
         file.write('POINTS {}\n'.format(len(points)))
         file.write('DATA ascii\n')
-    
+       
         for point in points:
             file.write(' '.join(map(str, point)) + '\n')
 
@@ -71,19 +71,19 @@ if __name__ == '__main__':
         print(f"Error: File '{input_file}' not found.")
         sys.exit(1)
 
-
+ 
     point_cloud = load_pcd_file(input_file)
 
-
+   
     # rotated_point_cloud = rotate_point_cloud_x(point_cloud, np.radians(30))
 
    
     rotated_point_cloud = rotate_point_cloud_y(point_cloud, np.radians(-15))
 
- 
+  
     output_file = os.path.splitext(input_file)[0] + '_rotated_y-15.pcd'
 
-  
+   
     save_pcd_file(output_file, rotated_point_cloud)
     
     print(f"Point cloud rotated and saved as '{output_file}'.")

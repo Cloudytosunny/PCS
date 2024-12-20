@@ -1,0 +1,3 @@
+/home/wsh/wsh/PointCloudSeg/upload/examples/build/CMakeFiles/edit_cache.dir
+/home/wsh/wsh/PointCloudSeg/upload/examples/build/CMakeFiles/rebuild_cache.dir
+/home/wsh/wsh/PointCloudSeg/upload/examples/build/CMakeFiles/pcs.dir
